@@ -93,26 +93,13 @@ class Memories with ChangeNotifier {
     return _elements.firstWhere((element) => element.id == id);
   }
 
-  // List<Memory> _favList = [];
-  // void addFav(Memory mem) {
-  //   // final existingIndex = _favList.indexWhere((element) => element.id == id);
-  //   final newProduct = Memory(
-  //       id: mem.id,
-  //       title: mem.title,
-  //       date: mem.date,
-  //       description: mem.description,
-  //       imageUrl: mem.imageUrl,
-  //       images: mem.images);
-  //   _favList.add(newProduct);
-  //   print(_favList[0].id);
-  //   notifyListeners();
-  // }
+  void toggFav(String id) {
+    Memory temp = _elements.firstWhere((element) => element.id == id);
+    temp.isFavorite = !temp.isFavorite;
+    notifyListeners();
+  }
 
   List<Memory> get favEle {
-    // print(_elements[0].isFavorite);
     return [..._elements.where((element) => element.isFavorite).toList()];
-    // print("inLen");
-    // print(_favList.length);
-    // return _favList;
   }
 }

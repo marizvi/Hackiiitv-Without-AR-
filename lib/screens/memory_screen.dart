@@ -23,6 +23,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
   Widget build(BuildContext context) {
     final memoryId = ModalRoute.of(context)?.settings.arguments as String;
     Memory loadedMemory = Provider.of<Memories>(context).findById(memoryId);
+    final tempMem = Provider.of<Memories>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedMemory.title),
@@ -120,7 +121,9 @@ class _MemoryScreenState extends State<MemoryScreen> {
           color: Colors.white,
         ),
         onPressed: () {
-          loadedMemory.toggleFavoriteStatus();
+          //both of below ways will work
+          // loadedMemory.toggleFavoriteStatus();
+          tempMem.toggFav(memoryId);
           setState(() {
             print("hellll");
           });
