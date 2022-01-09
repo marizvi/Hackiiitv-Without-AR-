@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/memories.dart';
+import '../providers/memory.dart';
 import "package:intl/intl.dart";
 
 class Memory_Item extends StatelessWidget {
@@ -83,7 +84,7 @@ class Memory_Item extends StatelessWidget {
                           : Icons.favorite_border,
                     ),
                     onPressed: () {
-                      memory.toggleFavorite();
+                      memory.toggleFavoriteStatus();
                     },
                   ),
                 ],

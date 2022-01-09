@@ -16,7 +16,7 @@ class MemoryGrid extends StatelessWidget {
           crossAxisSpacing: 10, // spacing between columns
           mainAxisSpacing: 10, //space between rows
         ),
-        itemCount: memoriesdata.elements.length,
+        itemCount: memories.length,
         itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
               value: memories[i],
               child: Memory_Item(),

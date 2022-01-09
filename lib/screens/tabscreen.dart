@@ -43,48 +43,45 @@ class _HomePageState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (ctx) => Memories(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              _pages[_selectedPageIndex]['title'] as String,
-              style: Theme.of(context).textTheme.title,
-            ),
-            actions: [
-              IconButton(
-                  onPressed: () {}, icon: Icon(Icons.account_circle_sharp))
-            ],
-          ),
-          body: _pages[_selectedPageIndex]['page'] as Widget,
-          bottomNavigationBar: BottomNavigationBar(
-            // onTap: (index) {
-            //   print(index);
-            // }, //will automatically provide index
-            onTap: _selectPage,
-            unselectedItemColor: Colors.white,
-            selectedItemColor: Theme.of(context).accentColor,
-            currentIndex: _selectedPageIndex,
-            type: BottomNavigationBarType
-                .shifting, //adds slight animation to navigation bar
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          _pages[_selectedPageIndex]['title'] as String,
+          style: Theme.of(context).textTheme.title,
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.account_circle_sharp))
+        ],
+      ),
+      body: _pages[_selectedPageIndex]['page'] as Widget,
+      bottomNavigationBar: BottomNavigationBar(
+        // onTap: (index) {
+        //   print(index);
+        // }, //will automatically provide index
+        onTap: _selectPage,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Theme.of(context).accentColor,
+        currentIndex: _selectedPageIndex,
+        type: BottomNavigationBarType
+            .shifting, //adds slight animation to navigation bar
 
-            items: [
-              BottomNavigationBarItem(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  icon: Icon(Icons.home_filled),
-                  title: Text(
-                    'Home',
-                  )),
-              BottomNavigationBarItem(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  icon: Icon(Icons.add_box_rounded),
-                  title: Text('Add')),
-              BottomNavigationBarItem(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  icon: Icon(Icons.star),
-                  title: Text('Favourites')),
-            ],
-          ),
-        ));
+        items: [
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.home_filled),
+              title: Text(
+                'Home',
+              )),
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.add_box_rounded),
+              title: Text('Add')),
+          BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.star),
+              title: Text('Favourites')),
+        ],
+      ),
+    );
   }
 }

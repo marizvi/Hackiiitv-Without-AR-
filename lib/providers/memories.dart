@@ -1,31 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:my_memories/models/memory.dart';
-
-class Memory with ChangeNotifier {
-  final String id;
-  final String title;
-  final DateTime date;
-  final String description;
-  final String imageUrl;
-  final List<String> images;
-  bool isFavorite;
-
-  Memory(
-      {required this.id,
-      required this.title,
-      required this.date,
-      required this.description,
-      required this.imageUrl,
-      required this.images,
-      this.isFavorite = false});
-
-  void toggleFavorite() {
-    print(isFavorite);
-    isFavorite = !isFavorite;
-    notifyListeners();
-    print(isFavorite);
-  }
-}
+import 'memory.dart';
 
 class Memories with ChangeNotifier {
   List<Memory> _elements = [

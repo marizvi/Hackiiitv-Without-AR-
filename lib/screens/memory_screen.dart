@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/memories.dart';
+import '../providers/memory.dart';
 
 class MemoryScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class MemoryScreen extends StatefulWidget {
 }
 
 class _MemoryScreenState extends State<MemoryScreen> {
-  void selection(BuildContext ctx, String url) {
+  void selectionPrev(BuildContext ctx, String url) {
     Navigator.of(ctx).pushNamed(
       '/preview',
       arguments: url,
@@ -21,9 +22,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
   @override
   Widget build(BuildContext context) {
     final memoryId = ModalRoute.of(context)?.settings.arguments as String;
-    final loadedMemory =
-        Provider.of<Memories>(context, listen: false).findById(memoryId);
-    final tempProvider = Provider.of<Memories>(context);
+    Memory loadedMemory = Provider.of<Memories>(context).findById(memoryId);
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedMemory.title),
@@ -98,7 +97,7 @@ class _MemoryScreenState extends State<MemoryScreen> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: InkWell(
-                              onTap: () => selection(
+                              onTap: () => selectionPrev(
                                   context, loadedMemory.images[index]),
                               child: Image.network(
                                 loadedMemory.images[index],
@@ -114,17 +113,19 @@ class _MemoryScreenState extends State<MemoryScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   child: Icon(
-      //     loadedMemory.isFavorite ? Icons.star : Icons.star_border_outlined,
-      //     color: Colors.white,
-      //   ),
-      //   onPressed: () {
-      //     loadedMemory.toggleFavorite();
-      //     setState(() {});
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(
+          loadedMemory.isFavorite ? Icons.star : Icons.star_border_outlined,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          loadedMemory.toggleFavoriteStatus();
+          setState(() {
+            print("hellll");
+          });
+        },
+      ),
     );
   }
 }
